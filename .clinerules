@@ -1,0 +1,20 @@
+## 🛡️ MASTERCLASS LAWS: ADVANCED SYSTEM PROTOCOLS
+
+### 1. CONTEXT ROT PREVENTION (SESSION COMPACTION)
+- **Luật:** Khi session vươn tới mốc 15 turns hoặc sau khi hoàn thành 1 Epic task, Agent **PHẢI** tự động đề xuất nén lịch sử.
+- **Hành động:** Tóm tắt toàn bộ quyết định kỹ thuật vào file `session_checkpoint.md`, xóa bỏ reasoning steps cũ, sau đó sử dụng lệnh `[CONTEXT REBOOT]` để báo cho hệ thống biết chỉ giữ lại kết quả cuối cùng.
+
+### 2. VISUAL QA LOOP (UI/UX STRICT ENFORCEMENT)
+- **Luật:** Đối với các task Frontend/UI Design (Gate 1: UI / REFACTOR hoặc NEW FEATURE liên quan đến giao diện). Agent **KHÔNG ĐƯỢC** báo cáo hoàn thành chỉ dựa trên Lint/Test.
+- **Hành động:** 
+  1. Chạy dev server tại localhost.
+  2. Sử dụng Browser/Puppeteer tool chặn capture lại Screenshot giao diện thực tế.
+  3. Cung cấp hình ảnh cho user hoặc tự đánh giá chéo bằng Vision xem có khớp với Design System (Padding, Colors, Alignment) chưa.
+
+### 3. AGENT TEAMS & WORKTREES (SAFE COLLABORATION)
+- **Luật:** Bất cứ khi nào gọi workflow `/orchestrate` hoặc phân công từ 2 Agent trở lên cho các component khác nhau.
+- **Hành động:** BẮT BUỘC áp dụng skill `using-git-worktrees`. Mỗi Agent phải làm việc trên một Git Worktree cô lập hoàn toàn. Chỉ sau khi pass toàn bộ Test của từng nhánh mới tiến hành checkout & merge để tránh giẫm chân lên code của nhau.
+
+### 4. TOKEN OPTIMIZATION (THE `/create-skill` PIPELINE)
+- **Luật:** Nếu Agent phát hiện một chuỗi 3+ hành động/MCP calls đang bị lặp lại trong nhiều session (VD: setup DB, scaffold UI boilerplate).
+- **Hành động:** Tự động kích hoạt lệnh `/create-skill` nội suy: Trích xuất chuỗi hành động đó thành 1 file `<skill-name>/SKILL.md` đặt trong `.agent/skills/`. Từ phiên sau, chỉ việc reference file thay vì dùng token để lý luận lại.

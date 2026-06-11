@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Tooling and Apps (Very Heavy)
+OrbStack.app/
+bin/
+
+# Archive files
+*.tar.gz
+*.zip
+*.tgz
+
+# Node/npm cache (any level)
+node_modules/
+.npm-cache/
+.env
+.env.*
+!.env.example
+
+# Build outputs
+dist/
+.next/
+out/
+build/
+.agent/

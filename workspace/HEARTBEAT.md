@@ -1,0 +1,3 @@
+- Check email
+- Check lịch 24h tới
+- Check xem có deploy nào fail không
